@@ -1,0 +1,16 @@
+# This code was used to generate Figures 2,3, and 10 in "Red light and the
+# dormancy-germination decision in Arabidopsis seeds" (in revision @ The
+# Bulletin of Mathematical Biology)
+#initial conditions 
+init P=1 R=1 C=1 B=1
+#parameters 
+par p2=0.01 p9=10 p1=1 p3=1 p4=1 p5=0.1 p6=10 p7=1 p8=0.1 p10=1 p11=1
+# Constant DoG Model (equations 5-) 
+dB/dt=p1*(p2/(1+p3*P^2)-B)
+dP/dt=p4*(p5+p6*R/(1+R)-(P+B*P)-p7*(P*R-C))
+dR/dt=p8+p9*P/(1+P)-R-p10*(P*R-C)
+dC/dt=p11*(P*R-C)
+#numerics 
+@ TOTAL=2000
+@ meth=cvode,bound=2000,yp=P,xlo=0,ylo=-1,xhi=5,yhi=5,autoymax=20,autoymin=0,autoxmin=0,autoxmax=50,parmin=0,parmax=50,dsmax=0.1
+done
